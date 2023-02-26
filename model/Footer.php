@@ -9,7 +9,9 @@ class Footer extends Block
     public function draw()
     {
         $str = <<<EOD
+    </main>
     <!-------------Блок "Footer"-------------------------->
+    <hr>
     <footer class='footer'>
         <h2>{$this->landing_footer}</h2>    
     </footer>
