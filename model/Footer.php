@@ -9,6 +9,7 @@ class Footer extends Block
     public function draw()
     {
         $str = <<<EOD
+        </div>
     </main>
     <!-------------Блок "Footer"-------------------------->
     <hr>

@@ -26,16 +26,25 @@ class Header extends Block
     <link rel="stylesheet" href="style/style.css">
 </head> 
 <body>
-    <div class="container">
-        <div class='header'>
+        <header class='header'>
             <div class="header__wrap">
-                <h1>{$this->landing_header} </h1>  
-                {$img}
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">  
+                        <a class="navbar-brand" href="index.php">{$this->landing_header}</a>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            </li>
+                        </ul>
+                        {$img}
+                    </div>
+                </nav>
             </div>          
-        </div>
+        </header>
         <hr>
     <!-------------Конец блока "Header"-------------------->
     <main class="main">
+        <div class="container">
 EOD;
         return $str;
     }
