@@ -53,7 +53,7 @@ class Model
     public function upload($files, $uploaddir)
     {
         $message = "";
-        $target_file = $uploaddir . basename($files["name"]);
+        $target_file = $uploaddir.basename($files["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $check = @getimagesize($files["tmp_name"]);

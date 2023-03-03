@@ -25,69 +25,72 @@ class PageBlocksFormGenerator
                         </div>
         EOD,
         "end" => <<<EOD
-        <div class="landing__footer">
-            <h4>Footer сторінки*</h4>
-            <input type="input" name="footer" placeholder="Enter footer copyright" class="design" />
-        </div>
-        <input type="submit" name="submitB" value="Generate Landing" class="design" id="ok" />
-        <a href="landing.zip" class="design" download>Download the result</a>
-    </form>
-                    <hr>
-                    <div class="landing__result">
-                        <h2>Result</h2>
-                        <hr>
-                        <a href='landing/index.html' class="design" target="_blank">Check up the result in the new tab</a>
-                        <iframe width="900px" height="550px" src="./landing/index.html"></iframe>
-                    </div>
+                        <div class="landing__footer">
+                            <h4>Page footer*</h4>
+                            <input type="input" name="footer" placeholder="Enter footer copyright" class="design" />
+                        </div>
+                        <input type="submit" name="submitB" value="Generate Landing" class="design"/>
+                    </form>
                 </div>
             </div>
         </section>
     EOD,
     ];
-    private $block_types;
-    private $form = [];
+    private $block_types = [];
+    private $blocks = [];
     public function __construct(array $block_types)
     {
         $this->block_types = $block_types;
     }
     public function generate_form()
     {
-        $blocks = [$this->block_parts["start"]];
+        $this->blocks[] = $this->block_parts["start"];
         foreach ($this->block_types as $key => $value) {
-            $block = $this->get_block_type($value);
-            if ($block) {
-                $blocks[] = $block;
+            $block = $this->get_block($value);
+            if (isset($block)) {
+                $this->blocks[] = $block;
             }
         }
-        $this->form = $blocks;
     }
-    private function get_block_type($block)
+    private function get_block($block)
     {
         switch ($block) {
             case "text":
+                $count = $this->get_count_blocks_of_type('name="text');
                 return '<div class="landing__text">
                 <h4>Paragraph*</h4>
-                <textarea name="text" placeholder="Enter your text" class="design"></textarea>
+                <textarea name="text'.$count.'" placeholder="Enter your text" class="design"></textarea>
             </div>';
             case "image":
+                $count = $this->get_count_blocks_of_type('name="image');
                 return '<div class="landing__image">
                 <h4>Image*</h4>
-                <input type="file" name="text" placeholder="" class="design"></input>
+                <input type="file" name="image'.$count.'" class="design"></input>
             </div>';
             case "form":
+                $count = $this->get_count_blocks_of_type('name="form');
                 return '<div class="landing__form">
                 <h4>Form*</h4>
-                <input type="input" name="form" placeholder="Enter button text" class="design" />
+                <input type="input" name="form'.$count.'" placeholder="Enter button text" class="design" />
             </div>';
             default:
                 return false;
         }
     }
+    private function get_count_blocks_of_type($block_type){
+        $count = 0;
+        foreach ($this->blocks as $key => $value) {
+            if(str_contains($value, $block_type)){
+                $count++;
+            }
+        }
+        return $count;
+    }
     public function print_form()
     {
-        $this->form[] = $this->block_parts["end"];
-        if (count($this->form) > 0) {
-            foreach ($this->form as $str) {
+        $this->blocks[] = $this->block_parts["end"];
+        if (count($this->blocks) > 0) {
+            foreach ($this->blocks as $str) {
                 echo $str;
             }
         }

@@ -8,10 +8,10 @@ class CreateHtml
         $this->dir = $dir;
     }
     public function create(){
-        $str_land = $this->model->generate(); // генерація тексту лендинга
+        $str_land = $this->model->generate();
         $path = "{$this->dir}/index.html";
-        $f = fopen($path, "w+"); // створення файлу лендинга по вказаному шляху
-        fwrite($f, $str_land); // запис в файл лендингу
+        $f = fopen($path, "w+");
+        fwrite($f, $str_land);
         fclose($f);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 require_once("autoload.php");
 $header = new Header("Landing Constructor");
+$block_types = [];
 echo $header->draw();
 
 if (empty($_REQUEST)) {
@@ -28,9 +29,19 @@ elseif (isset($_GET['blocks-amount'])) {
     $ask_generator->print_form();
 }
 elseif(isset($_POST['blocks-types'])){
-    $blocks_generator = new PageBlocksFormGenerator($_POST);
+    $block_types = $_POST;
+    $blocks_generator = new PageBlocksFormGenerator($block_types);
     $blocks_generator->generate_form();
     $blocks_generator->print_form();
+}
+elseif(isset($_GET['result'])){
+    echo '<div class="landing__result">
+    <h2>Result</h2>
+    <hr>
+    <a href="landing.zip" class="design" download>Download the result</a>
+    <a href="landing/index.html" class="design" target="_blank">Check up the result in the new tab</a>
+    <iframe width="900px" height="550px" src="./landing/index.html"></iframe>
+</div>';
 }
 
 $footer = new Footer("All rights reserved by Bohdan Shcherbak!");
