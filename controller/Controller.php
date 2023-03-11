@@ -14,11 +14,33 @@ class Controller
         if (!is_dir($this->uploaddir)) {
             mkdir($this->uploaddir);
         }
+        $this->custom_copy("../style", $dir."/style/");
     }
+    private function custom_copy($path, $destination) {
+        if(!is_dir($destination)){
+            mkdir($destination);
+        } 
+        $dir = opendir($path); 
+        while( $file = readdir($dir) ) {
+            if (( $file != '.' ) && ( $file != '..' )) { 
+                if ( is_dir($path . '/' . $file) ) 
+                { 
+                    $this->custom_copy($path . '/' . $file, $destination . '/' . $file); 
+                } 
+                else { 
+                    copy($path . '/' . $file, $destination . '/' . $file); 
+                } 
+            } 
+        } 
+      
+        closedir($dir);
+    } 
     public function action()
     {
         $blocks = [];
+        $images = [];
         $title = "";
+
         ob_start();
         print_r($_POST);
         foreach ($_POST as $key => $value) {
@@ -42,8 +64,9 @@ class Controller
                 $blocks[] = $form;
             }
             elseif (str_contains($key, "image")) {
-                $form = new Image($value);
-                $blocks[] = $form;
+                $image = new Image($value);
+                $blocks[] = $image;
+                $images[] = $image;
             }
             elseif($key == "footer"){
                 $footer = new Footer($value);

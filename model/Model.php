@@ -61,23 +61,23 @@ class Model
             $uploadOk = 0;
         }
         if (file_exists($target_file)) {
-            $message = "Файл уже существует.";
+            $message = "The file already exists";
         }
         if ($files["size"] > 50000000) {
-            $message = "Файл слишком большой.";
+            $message = "The file is too big";
             $uploadOk = 0;
         }
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            $message = "Извините, разрешены только форматы JPG, JPEG, PNG & GIF.";
+            $message = "Sorry, only these formats allowed JPG, JPEG, PNG & GIF.";
             $uploadOk = 0;
         }
         if ($uploadOk == 0) {
-            $message .= " Файл не был загружен.";
+            $message .= "File was not uploaded.";
         } else {
             if (move_uploaded_file($files['tmp_name'], $target_file)) {
-                $message .= "Файл " . basename($files["tmp_name"]) . " был успешно загружен.";
+                $message .= "File ".basename($files["tmp_name"])." was successfully uploaded!";
             } else {
-                $message .= "При загрузке файла произошла ошибка." . basename($files["tmp_name"]);
+                $message .= "There's an error while loading file ".basename($files["tmp_name"]);
             }
         }
         return $message;
