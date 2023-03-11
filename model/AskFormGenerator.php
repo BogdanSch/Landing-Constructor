@@ -6,7 +6,7 @@ class AskFormGenerator
         "end" => '<input type="submit" name="blocks-types"></form>',
     ];
     private $blocksAmount;
-    private $form = [];
+    private $blocks = [];
     public function getBlocksAmount()
     {
         return $this->blocksAmount;
@@ -23,9 +23,9 @@ class AskFormGenerator
     }
     public function generate_form()
     {
-        $blocks = [$this->block_parts["start"]];
+        $this->blocks[] = $this->block_parts["start"];
         for ($i = 0; $i < $this->blocksAmount; $i++) {
-            $blocks[] = <<<EOD
+            $this->blocks[] = <<<EOD
                 <div class="blocks__item">
                     <p>Choose your block type</p>
                     <select name="blockType{$i}">
@@ -36,13 +36,12 @@ class AskFormGenerator
                 </div>
             EOD;
         }
-        $this->form = $blocks;
     }
     public function print_form()
     {
-        $this->form[] = $this->block_parts["end"];
-        if (count($this->form) > 0) {
-            foreach ($this->form as $str) {
+        $this->blocks[] = $this->block_parts["end"];
+        if (count($this->blocks) > 0) {
+            foreach ($this->blocks as $str) {
                 echo $str;
             }
         }
