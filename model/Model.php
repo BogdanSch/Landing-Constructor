@@ -82,5 +82,11 @@ class Model
         }
         return $message;
     }
-
+    public static function is_dir_empty($dir) {
+        if(is_dir($dir)){
+            if (!is_readable($dir)) return true;
+            return (count(scandir($dir)) == 2);
+        }
+        return true;
+    }
 }

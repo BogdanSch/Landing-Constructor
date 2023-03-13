@@ -38,8 +38,8 @@ class Controller
     public function action()
     {
         $blocks = [];
-        $images = [];
         $title = "";
+        $model = new Model();
 
         ob_start();
         print_r($_POST);
@@ -64,20 +64,21 @@ class Controller
                 $blocks[] = $form;
             }
             elseif (str_contains($key, "image")) {
-                $image = new Image($value);
-                $blocks[] = $image;
-                $images[] = $image;
+                if(isset($key["name"])){
+                    $image = new Image($value);
+                    $blocks[] = $image;
+                    $model->upload($key, $this->uploaddir);
+                }
             }
             elseif($key == "footer"){
                 $footer = new Footer($value);
                 $blocks[] = $footer;
             }
         }
-        if (isset($title)) {
-            $model = new Model($blocks, $title);
-        } else {
-            $model = new Model($blocks);
-        }
+        if($title)
+            $model->setName($title);
+        $model->setBlocks($blocks);
+
         $html = new CreateHtml($model, $this->dir);
         $html->create();
         if (isset($_FILES["logo"]["name"])) {

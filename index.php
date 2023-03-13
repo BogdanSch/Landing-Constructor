@@ -3,7 +3,15 @@ require_once("autoload.php");
 $header = new Header("Landing Constructor");
 $block_types = [];
 echo $header->draw();
-
+$landing_preview = <<<EOD
+<div class="landing__result">
+<h2>Result</h2>
+<hr>
+<a href="landing.zip" class="design" download>Download the result</a>
+<a href="landing/index.html" class="design" target="_blank">Check up the result in the new tab</a>
+<iframe width="900px" height="550px" src="./landing/index.html"></iframe>
+</div>
+EOD;
 if (empty($_REQUEST)) {
     echo <<<EOD
     <div class="landing-amount">
@@ -22,26 +30,26 @@ if (empty($_REQUEST)) {
         </div>
     </div> 
 EOD;
+    if(!Model::is_dir_empty("landing/")) 
+        echo $landing_preview;
 }
 elseif (isset($_GET['blocks-amount'])) {
     $ask_generator = new AskFormGenerator($_GET['blocks-amount']);
     $ask_generator->generate_form();
     $ask_generator->print_form();
+    if(!Model::is_dir_empty("landing/")) 
+        echo $landing_preview;
 }
 elseif(isset($_POST['blocks-types'])){
     $block_types = $_POST;
     $blocks_generator = new PageBlocksFormGenerator($block_types);
     $blocks_generator->generate_form();
     $blocks_generator->print_form();
+    if(!Model::is_dir_empty("landing/")) 
+        echo $landing_preview;
 }
 elseif(isset($_GET['result'])){
-    echo '<div class="landing__result">
-    <h2>Result</h2>
-    <hr>
-    <a href="landing.zip" class="design" download>Download the result</a>
-    <a href="landing/index.html" class="design" target="_blank">Check up the result in the new tab</a>
-    <iframe width="900px" height="550px" src="./landing/index.html"></iframe>
-</div>';
+    echo $landing_preview;
 }
 
 $footer = new Footer("All rights reserved by Bohdan Shcherbak!");

@@ -15,6 +15,12 @@ input {
 h1, h2, h3{
     text-align: center;
 }
+.logo{
+    width: 3%;
+}
+.content-image{
+    width: 55%;
+}
 /* General - End */
 /* Header - Start */
 header{

@@ -3,7 +3,7 @@ class AskFormGenerator
 {
     private $block_parts = [
         "start" => '<h3>Header and footer are already included</h3><form class="generator__form" enctype="multipart/form-data" action="index.php" method="POST">',
-        "end" => '<input type="submit" name="blocks-types"></form>',
+        "end" => '<input type="submit" name="blocks-types" class="btn btn-primary"></form>',
     ];
     private $blocksAmount;
     private $blocks = [];
@@ -27,8 +27,8 @@ class AskFormGenerator
         for ($i = 0; $i < $this->blocksAmount; $i++) {
             $this->blocks[] = <<<EOD
                 <div class="blocks__item">
-                    <p>Choose your block type</p>
-                    <select name="blockType{$i}">
+                    <p>Choose your block type*</p>
+                    <select class="form-select" name="blockType{$i}">
                         <option value="text">Text</option>
                         <option value="image">Image</option>
                         <option value="form">Form</option>

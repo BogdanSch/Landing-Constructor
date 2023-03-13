@@ -10,7 +10,7 @@ class Image
     public function draw()
     {
         $str = <<<EOD
-        <img src="{$this->image}" alt=\"image">
+            <img src="{$this->image}" alt=\"image" class="content-image">
         EOD;
         return $str;
     }

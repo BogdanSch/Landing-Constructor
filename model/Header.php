@@ -3,10 +3,12 @@ class Header extends Block
 {
     private $landing_header;
     private $logo_img;
-    function __construct($landing_header = "Header", $logo_img = "")
+    private $link_mode;
+    function __construct($landing_header = "Header", $logo_img = "", $link_mode = "html")
     {
         $this->landing_header = $landing_header;
         $this->logo_img = $logo_img;
+        $this->link_mode = $link_mode;
     }
     public function draw()
     {
@@ -15,7 +17,6 @@ class Header extends Block
         } else
             $img = "";
         $str = <<<EOD
-    <!-------------Блок "Header"-------------------------->
     <!DOCTYPE html>
 <html>
 <head>
@@ -26,14 +27,15 @@ class Header extends Block
     <link rel="stylesheet" href="style/style.css">
 </head> 
 <body>
+<!-------------Блок "Header"-------------------------->
         <header class='header'>
             <div class="header__wrap">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">  
-                        <a class="navbar-brand" href="index.php">{$this->landing_header}</a>
+                        <a class="navbar-brand" href="index.{$this->link_mode}">{$this->landing_header}</a>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                                <a class="nav-link active" aria-current="page" href="index.{$this->link_mode}">Home</a>
                             </li>
                         </ul>
                         {$img}
