@@ -1,6 +1,6 @@
 <?php
 require_once("autoload.php");
-$header = new Header("Landing Constructor");
+$header = new Header("Landing Constructor", "", "php");
 $block_types = [];
 echo $header->draw();
 $landing_preview = <<<EOD
