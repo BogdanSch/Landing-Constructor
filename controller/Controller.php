@@ -23,8 +23,7 @@ class Controller
         $dir = opendir($path); 
         while( $file = readdir($dir) ) {
             if (( $file != '.' ) && ( $file != '..' )) { 
-                if ( is_dir($path . '/' . $file) ) 
-                { 
+                if ( is_dir($path . '/' . $file) ) { 
                     $this->custom_copy($path . '/' . $file, $destination . '/' . $file); 
                 } 
                 else { 
@@ -65,7 +64,8 @@ class Controller
             }
             elseif (str_contains($key, "image")) {
                 if(isset($key["name"])){
-                    $image = new Image($value);
+                    $imgPath = "images/".$key["name"];
+                    $image = new Image($imgPath);
                     $blocks[] = $image;
                     $model->upload($key, $this->uploaddir);
                 }
