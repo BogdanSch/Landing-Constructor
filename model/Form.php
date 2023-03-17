@@ -8,16 +8,18 @@ class Form extends Block {
         $str = <<<EOD
      <!-------------Блок "Form"-------------------------->
     <div class="form">        
-        <form action="send.php" method="post">
-            <input type="hidden" name="MAX_FILE_SIZE" value="30000" /> 
-            <h3>Записаться</h3>    
+        <form action="send.php" method="post"> 
+            <label for="">Sign in</label> 
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             <div class="form__name">
-                <input type="text" placeholder="Введите имя" class="design">
+                <label for="user_name">User name</label>
+                <input name="user_name" type="text" class="form-control">
             </div>
             <div class="form__gmail">
-                <input type="email" placeholder="Введите email" class="design">  
+                <label for="email">Email address</label>
+                <input type="email" name="email class="form-control">  
             </div>
-            <input type="submit" name="submitB" value="{$this->value}" class="design" />
+            <input type="submit" name="submitB" value="{$this->value}" class="btn btn-primary" />
         </form> 
     </div>
     <!-------------Конец блока "Form"-------------------->\n

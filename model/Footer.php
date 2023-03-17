@@ -12,9 +12,12 @@ class Footer extends Block
         </div>
     </main>
     <!-------------Блок "Footer"-------------------------->
-    <hr>
     <footer class='footer'>
-        <h2>{$this->landing_footer}</h2>    
+        <div class="container">
+            <div class="footer__wrap">
+                <h3>{$this->landing_footer}</h3> 
+            </div>
+        </div>   
     </footer>
     <!-------------Конец блока "Footer"-------------------->\n
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>

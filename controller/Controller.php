@@ -39,9 +39,9 @@ class Controller
         $blocks = [];
         $title = "";
         $model = new Model();
+        print_r($_POST);
 
         ob_start();
-        print_r($_POST);
         foreach ($_POST as $key => $value) {
             if ($key == 'header') {
                 $img = "";
@@ -63,11 +63,11 @@ class Controller
                 $blocks[] = $form;
             }
             elseif (str_contains($key, "image")) {
-                if(isset($key["name"])){
-                    $imgPath = "images/".$key["name"];
-                    $image = new Image($imgPath);
+                if(isset($_FILES[$key]["name"])){
+                    $img = "images/".$_FILES[$key]["name"];
+                    $image = new Image($img);
                     $blocks[] = $image;
-                    $model->upload($key, $this->uploaddir);
+                    echo $model->upload($_FILES[$key], $this->uploaddir);
                 }
             }
             elseif($key == "footer"){
@@ -85,7 +85,7 @@ class Controller
             echo $model->upload($_FILES["logo"], $this->uploaddir);
         }
         $model->archive($this->dir);
-        header("Location: ../index.php?result=true");
+        //header("Location: ../index.php?result=true");
         ob_flush();
     }
 }

@@ -28,22 +28,23 @@ class Header extends Block
 </head> 
 <body>
 <!-------------Блок "Header"-------------------------->
-        <header class='header'>
-            <div class="header__wrap">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">  
-                        <a class="navbar-brand" href="index.{$this->link_mode}">{$this->landing_header}</a>
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.{$this->link_mode}">Home</a>
-                            </li>
-                        </ul>
-                        {$img}
-                    </div>
-                </nav>
-            </div>          
+        <header class="header">
+            <div class="container">
+                <div class="header__wrap">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="container-fluid">  
+                            <a class="navbar-brand" href="index.{$this->link_mode}">{$this->landing_header}</a>
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="index.{$this->link_mode}">Home</a>
+                                </li>
+                            </ul>
+                            {$img}
+                        </div>
+                    </nav>
+                </div>       
+            </div>
         </header>
-        <hr>
     <!-------------Конец блока "Header"-------------------->
     <main class="main">
         <div class="container">

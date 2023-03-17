@@ -7,6 +7,7 @@ class PageBlocksFormGenerator
         <section class="landing">
             <div class="container">
                 <div class="landing__wrap">
+                    <h1>Landing Constructor form</h1>
                     <form class="landing__form form" enctype="multipart/form-data" action="controller/controller.php" method="post">
                         <p>* Fields that you need to fill in!</p>
                         <div class="landing__title mb-3">
@@ -18,8 +19,7 @@ class PageBlocksFormGenerator
                             <input type="text" name="header" class="form-control" placeholder="Enter page title for header">
                         </div>
                         <div class="landing__logo mb-3">
-                            <h4>Logo</h4>
-                            <label for="formFile" class="form-label">Default file input example</label>
+                            <label class="form-label">Logo</label>
                             <input class="form-control" name="logo" type="file" id="formFile">
                             <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
                             <div id="message"></div>
@@ -67,15 +67,15 @@ class PageBlocksFormGenerator
                 $count = $this->get_count_blocks_of_type('name="image');
                 return '
                 <div class="landing__image mb-3">
-                    <h4>Image*</h4>
-                    <label for="formFile" class="form-label">Default file input example</label>
+                    <label class="form-label">Image*</label>
                     <input name="image'.$count.'" class="form-control" type="file" id="formFile">
+                    <input type="hidden" name="image'.$count.'">
                 </div>';
             case "form":
                 $count = $this->get_count_blocks_of_type('name="form');
                 return '<div class="landing__form">
-                <h4>Form*</h4>
-                <input type="input" name="form'.$count.'" placeholder="Enter button text" class="design" />
+                <label class="form-label">Form*</label>
+                <input type="input" name="form'.$count.'" class="form-control" placeholder="Enter button text" class="design" />
             </div>';
             default:
                 return false;
