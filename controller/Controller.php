@@ -37,6 +37,7 @@ class Controller
     public function action()
     {
         $blocks = [];
+        $accordion_count = 0;
         $title = "";
         $model = new Model();
         print_r($_POST);
@@ -62,6 +63,10 @@ class Controller
                 $form = new Form($value);
                 $blocks[] = $form;
             }
+            elseif (str_contains($key, "accordion")) {
+                $accordion = new Accordion("accordion-title".$accordion_count, "accordion-text".$accordion_count);
+                $blocks[] = $accordion;
+            }
             elseif (str_contains($key, "image")) {
                 if(isset($_FILES[$key]["name"])){
                     $img = "images/".$_FILES[$key]["name"];
@@ -85,7 +90,7 @@ class Controller
             echo $model->upload($_FILES["logo"], $this->uploaddir);
         }
         $model->archive($this->dir);
-        //header("Location: ../index.php?result=true");
+        header("Location: ../index.php?result=true");
         ob_flush();
     }
 }
