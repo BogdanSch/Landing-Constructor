@@ -40,7 +40,6 @@ class Controller
         $accordion_count = 0;
         $title = "";
         $model = new Model();
-        print_r($_POST);
 
         ob_start();
         foreach ($_POST as $key => $value) {
