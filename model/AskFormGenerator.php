@@ -32,6 +32,7 @@ class AskFormGenerator
                         <option value="text">Text</option>
                         <option value="image">Image</option>
                         <option value="form">Form</option>
+                        <option value="accordion">Accordion</option>
                     </select>
                 </div>
             EOD;

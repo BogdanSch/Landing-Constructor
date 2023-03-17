@@ -22,7 +22,7 @@ class Form extends Block {
             <input type="submit" name="submitB" value="{$this->value}" class="btn btn-primary" />
         </form> 
     </div>
-    <!-------------Конец блока "Form"-------------------->\n
+    <!-------------End of Block "Form"-------------------->\n
 EOD;
         return $str;
     }

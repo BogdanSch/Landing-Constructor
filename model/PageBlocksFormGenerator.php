@@ -75,7 +75,14 @@ class PageBlocksFormGenerator
                 $count = $this->get_count_blocks_of_type('name="form');
                 return '<div class="landing__form">
                 <label class="form-label">Form*</label>
-                <input type="input" name="form'.$count.'" class="form-control" placeholder="Enter button text" class="design" />
+                <input type="input" name="form'.$count.'" class="form-control" placeholder="Enter button text" />
+            </div>';
+            case "accordion":
+                $count = $this->get_count_blocks_of_type('name="accordion');
+                return '<div class="landing__accordion">
+                <label class="form-label">Accordion*</label>
+                <input type="input" name="accordion-title'.$count.'" class="form-control" placeholder="Enter accordion title" />
+                <input type="input" name="accordion-text'.$count.'" class="form-control" placeholder="Enter accordion text" />
             </div>';
             default:
                 return false;
