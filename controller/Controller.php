@@ -66,6 +66,7 @@ class Controller
             elseif (str_contains($key, "accordion")) {
                 $accordion = new Accordion("accordion-title".$accordion_count, "accordion-text".$accordion_count);
                 $blocks[] = $accordion;
+                $accordion_count++;
             }
             elseif (str_contains($key, "image")) {
                 if(isset($_FILES[$key]["name"])){
