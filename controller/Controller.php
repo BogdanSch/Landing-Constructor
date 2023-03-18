@@ -62,7 +62,7 @@ class Controller
                 $form = new Form($value);
                 $blocks[] = $form;
             }
-            elseif (str_contains($key, "accordion")) {
+            elseif (str_contains($key, "accordion") && str_contains($key, $accordion_count)) {
                 $accordion = new Accordion($_POST["accordion-title".$accordion_count], $_POST["accordion-content".$accordion_count]);
                 $blocks[] = $accordion;
                 $accordion_count++;
