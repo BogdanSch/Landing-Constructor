@@ -13,16 +13,19 @@ class Accordion extends Block
   {
     $str = <<<EOD
      <!-------------Block "Accordion"-------------------------->
-     <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            {$this->accordion_title}
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>{$this->accordion_content}</strong>
-        </div>
+     <div class="accordion">
+      <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              {$this->accordion_title}
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>{$this->accordion_content}</strong>
+            </div>
+          </div>
+      </div>
      </div>
     <!-------------End of Block "Accordion"-------------------->\n
 EOD;

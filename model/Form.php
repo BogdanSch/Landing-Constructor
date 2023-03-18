@@ -17,7 +17,7 @@ class Form extends Block {
             </div>
             <div class="form__gmail">
                 <label for="email">Email address</label>
-                <input type="email" name="email class="form-control">  
+                <input type="email" class="form-control" name="user_email">  
             </div>
             <input type="submit" name="submitB" value="{$this->value}" class="btn btn-primary" />
         </form> 
