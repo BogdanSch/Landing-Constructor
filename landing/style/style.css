@@ -1,0 +1,55 @@
+/* General - Start */
+body{
+    min-height: 1vh;
+}
+html{
+	scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+	width: 7px;
+	background-color: rgb(224, 224, 224);
+}
+::-webkit-scrollbar-thumb {
+	background: rgb(143, 143, 143);
+	border-radius: 50px;
+}
+.form{
+    margin-top: 10px;
+}
+input {
+    display: block;
+    padding: 5px 15px;
+    width: 200px;
+    margin: 5px;
+}
+.design{
+    width: 300px;
+}
+h1, h2, h3{
+    text-align: center;
+}
+.logo{
+    width: 3%;
+}
+.content-image{
+    width: 55%;
+}
+/* General - End */
+/* Header - Start */
+header{
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+}
+/* Header - End */
+/* Footer - Start */
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+  }
+/* Footer - End */

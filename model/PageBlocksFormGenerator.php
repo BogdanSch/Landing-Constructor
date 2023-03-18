@@ -87,7 +87,7 @@ class PageBlocksFormGenerator
                 </div>
                 <div class="form-group">
                     <small class="form-text text-muted">Accordion content</small>
-                    <input type="input" name="accordion-text'.$count.'" class="form-control" placeholder="Enter accordion content"/>   
+                    <input type="input" name="accordion-content'.$count.'" class="form-control" placeholder="Enter accordion content"/>   
                 </div>
             </div>';
             default:

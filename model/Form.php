@@ -9,7 +9,7 @@ class Form extends Block {
      <!-------------Блок "Form"-------------------------->
     <div class="form">        
         <form action="send.php" method="post"> 
-            <label for="">Sign in</label> 
+            <label>Sign in</label> <br>
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             <div class="form__name">
                 <label for="user_name">User name</label>

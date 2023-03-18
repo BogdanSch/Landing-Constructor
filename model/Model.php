@@ -26,7 +26,7 @@ class Model
     }
     function archive($dir)
     {
-        $zip = new ZipArchive;
+        $zip = new ZipArchive();
         $arch = ".zip";
         $zip->open($dir . $arch, ZIPARCHIVE::CREATE | ZIPARCHIVE::OVERWRITE);
         $files = new RecursiveIteratorIterator(
