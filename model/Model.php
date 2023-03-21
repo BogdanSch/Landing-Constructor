@@ -56,32 +56,32 @@ class Model
         $target_file = $uploaddir.basename($file["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $check = @getimagesize($file["tmp_name"]);
-        if (!$check) {
-            $uploadOk = 0;
-        }
-        if (file_exists($target_file)) {
-            $message = "The file already exists";
-            $uploadOk = 0;
-        }
-        if ($file["size"] > 100000000) {
-            $message = "The file is too big";
-            $uploadOk = 0;
-        }
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            $message = "Sorry, only these formats allowed JPG, JPEG, PNG & GIF.";
-            $uploadOk = 0;
-        }
-        if ($uploadOk == 0) {
-            $message .= "! File was not uploaded. ";
-        } else {
-            if (move_uploaded_file($file['tmp_name'], $target_file)) {
-                $message .= "File ".basename($file["tmp_name"])." was successfully uploaded!";
-            } else {
-                $message .= "There's an error while loading file ".basename($file["tmp_name"]);
+
+        if(isset($file["tmp_name"])){
+            if (file_exists($target_file)) {
+                $message = "The file already exists";
+                $uploadOk = 0;
             }
+            if ($file["size"] > 100000000) {
+                $message = "The file is too big";
+                $uploadOk = 0;
+            }
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                $message = "Sorry, only these formats allowed JPG, JPEG, PNG & GIF.";
+                $uploadOk = 0;
+            }
+            if ($uploadOk == 0) {
+                $message .= "! File was not uploaded. ";
+            } else {
+                if (move_uploaded_file($file['tmp_name'], $target_file)) {
+                    $message .= "File ".basename($file["tmp_name"])." was successfully uploaded!";
+                } else {
+                    $message .= "There's an error while loading file ".basename($file["tmp_name"]);
+                }
+            }
+            return $message;
         }
-        return $message;
+        return "File tmp_name error!";
     }
     public static function is_dir_empty($dir) {
         if(is_dir($dir)){
