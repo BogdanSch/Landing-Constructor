@@ -56,6 +56,7 @@ class Model
         $target_file = $uploaddir . basename($file["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        echo $uploaddir." ".$imageFileType;
 
         try {
             $size = getimagesize($file["tmp_name"]);
@@ -66,7 +67,7 @@ class Model
                 $message = "The file already exists";
                 $uploadOk = 0;
             }
-            if ($size > 100000000) {
+            if ($file["size"] > 100000000) {
                 $message = "The file is too big";
                 $uploadOk = 0;
             }
