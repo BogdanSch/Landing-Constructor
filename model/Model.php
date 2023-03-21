@@ -50,20 +50,21 @@ class Model
         }
         return $content;
     }
-    public function upload($files, $uploaddir)
+    public function upload($file, $uploaddir)
     {
         $message = "";
-        $target_file = $uploaddir.basename($files["name"]);
+        $target_file = $uploaddir.basename($file["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $check = @getimagesize($files["tmp_name"]);
+        $check = @getimagesize($file["tmp_name"]);
         if (!$check) {
             $uploadOk = 0;
         }
         if (file_exists($target_file)) {
             $message = "The file already exists";
+            $uploadOk = 0;
         }
-        if ($files["size"] > 50000000) {
+        if ($file["size"] > 100000000) {
             $message = "The file is too big";
             $uploadOk = 0;
         }
@@ -74,10 +75,10 @@ class Model
         if ($uploadOk == 0) {
             $message .= "File was not uploaded.";
         } else {
-            if (move_uploaded_file($files['tmp_name'], $target_file)) {
-                $message .= "File ".basename($files["tmp_name"])." was successfully uploaded!";
+            if (move_uploaded_file($file['tmp_name'], $target_file)) {
+                $message .= "File ".basename($file["tmp_name"])." was successfully uploaded!";
             } else {
-                $message .= "There's an error while loading file ".basename($files["tmp_name"]);
+                $message .= "There's an error while loading file ".basename($file["tmp_name"]);
             }
         }
         return $message;

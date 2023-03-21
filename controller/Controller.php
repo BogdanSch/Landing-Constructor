@@ -68,7 +68,7 @@ class Controller
                 $accordion_count++;
             }
             elseif (str_contains($key, "image")) {
-                if(isset($_FILES[$key]["name"])){
+                if(isset($_FILES[$key]["name"]) && !empty($_FILES[$key]["name"])){
                     $img = "images/".$_FILES[$key]["name"];
                     $image = new Image($img);
                     $blocks[] = $image;
