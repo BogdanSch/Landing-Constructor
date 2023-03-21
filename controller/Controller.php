@@ -72,7 +72,7 @@ class Controller
                     $img = "images/".$_FILES[$key]["name"];
                     $image = new Image($img);
                     $blocks[] = $image;
-                    echo $model->upload($_FILES[$key], $this->uploaddir)."\n";
+                    echo $model->upload($_FILES[$key], $this->uploaddir)."<hr>";
                 }
             }
             elseif($key == "footer"){

@@ -53,16 +53,20 @@ class Model
     public function upload($file, $uploaddir)
     {
         $message = "";
-        $target_file = $uploaddir.basename($file["name"]);
+        $target_file = $uploaddir . basename($file["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        if(isset($file["tmp_name"])){
+        try {
+            $size = getimagesize($file["tmp_name"]);
+            if (!$size) {
+                $uploadOk = 0;
+            }
             if (file_exists($target_file)) {
                 $message = "The file already exists";
                 $uploadOk = 0;
             }
-            if ($file["size"] > 100000000) {
+            if ($size > 100000000) {
                 $message = "The file is too big";
                 $uploadOk = 0;
             }
@@ -74,18 +78,21 @@ class Model
                 $message .= "! File was not uploaded. ";
             } else {
                 if (move_uploaded_file($file['tmp_name'], $target_file)) {
-                    $message .= "File ".basename($file["tmp_name"])." was successfully uploaded!";
+                    $message .= "File " . basename($file["tmp_name"]) . " was successfully uploaded!";
                 } else {
-                    $message .= "There's an error while loading file ".basename($file["tmp_name"]);
+                    $message .= "There's an error while loading file " . basename($file["tmp_name"]);
                 }
             }
             return $message;
+        } catch (Exception $e) {
+            return $e;
         }
-        return "File tmp_name error!";
     }
-    public static function is_dir_empty($dir) {
-        if(is_dir($dir)){
-            if (!is_readable($dir)) return true;
+    public static function is_dir_empty($dir)
+    {
+        if (is_dir($dir)) {
+            if (!is_readable($dir))
+                return true;
             return (count(scandir($dir)) == 2);
         }
         return true;

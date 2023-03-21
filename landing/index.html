@@ -28,9 +28,11 @@
         </header>
     <!-------------Конец блока "Header"-------------------->
     <main class="main">
-        <div class="container">     <!-------------Блок "Text"-------------------------->
+        <div class="container">        <!-------------Block "Image"-------------------------->
+            <img src="images/pic.jpg" alt="image" class="content-image">
+        <!-------------The end of block "Image"-------------------------->     <!-------------Блок "Text"-------------------------->
     <div class='text'>        
-       Text
+       Some kind of random text goes right here.
     </div>
     <!-------------Кінець блоку "Text"-------------------->
      <!-------------Block "Accordion"-------------------------->
@@ -43,12 +45,29 @@
 			</h2>
 			<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				<div class="accordion-body">
-					Content
+					Some kind of random text for accordion goes right here.
 				</div>
 			</div>
 		</div>
 	</div>
     <!-------------End of Block "Accordion"-------------------->
+     <!-------------Блок "Form"-------------------------->
+    <div class="form">        
+        <form action="send.php" method="post"> 
+            <label>Sign in</label> <br>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div class="form__name">
+                <label for="user_name">User name</label>
+                <input name="user_name" type="text" class="form-control">
+            </div>
+            <div class="form__gmail">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" name="user_email">  
+            </div>
+            <input type="submit" name="submitB" value="Submit" class="btn btn-primary" />
+        </form> 
+    </div>
+    <!-------------End of Block "Form"-------------------->
         </div>
     </main>
     <!-------------Блок "Footer"-------------------------->
