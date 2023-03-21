@@ -73,7 +73,7 @@ class Model
             $uploadOk = 0;
         }
         if ($uploadOk == 0) {
-            $message .= "File was not uploaded.";
+            $message .= "! File was not uploaded. ";
         } else {
             if (move_uploaded_file($file['tmp_name'], $target_file)) {
                 $message .= "File ".basename($file["tmp_name"])." was successfully uploaded!";

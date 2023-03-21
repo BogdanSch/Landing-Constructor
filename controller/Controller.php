@@ -72,7 +72,7 @@ class Controller
                     $img = "images/".$_FILES[$key]["name"];
                     $image = new Image($img);
                     $blocks[] = $image;
-                    echo $model->upload($_FILES[$key], $this->uploaddir);
+                    echo $model->upload($_FILES[$key], $this->uploaddir)."\n";
                 }
             }
             elseif($key == "footer"){
@@ -90,7 +90,7 @@ class Controller
             echo $model->upload($_FILES["logo"], $this->uploaddir);
         }
         $model->archive($this->dir);
-        header("Location: ../index.php?result=true");
+        //header("Location: ../index.php?result=true");
         ob_flush();
     }
 }
