@@ -3,28 +3,28 @@ class Model
 {
     private $name;
     private $blocks = [];
-    function getName()
+    public function getName()
     {
         return $this->name;
     }
-    function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
-    function getBlocks()
+    public function getBlocks()
     {
         return $this->blocks;
     }
-    function setBlocks($blocks)
+    public function setBlocks($blocks)
     {
         $this->blocks = $blocks;
     }
-    function __construct(array $blocks = [], $name = "Landing Constructor")
+    public function __construct(array $blocks = [], $name = "Landing Constructor")
     {
         $this->name = $name;
         $this->blocks = $blocks;
     }
-    function archive($dir)
+    public function archive($dir)
     {
         $zip = new ZipArchive();
         $arch = ".zip";
@@ -42,7 +42,7 @@ class Model
         }
         $zip->close();
     }
-    function generate()
+    public function generate()
     {
         $content = "";
         for ($i = 0; $i < count($this->blocks); $i++) {
@@ -50,50 +50,57 @@ class Model
         }
         return $content;
     }
-    public function upload($file, $uploaddir)
+    public function upload($files, $uploaddir)
     {
         $message = "";
-        $target_file = $uploaddir . basename($file["name"]);
+        echo " u: " . $uploaddir;
+        echo " bfn: " . basename($files["name"]);
+        echo " f2: ";
+        print_r($files);
+        $target_file = $uploaddir . basename($files["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        echo $uploaddir." ".$imageFileType;
 
-        try {
-            $size = getimagesize($file["tmp_name"]);
-            if (!$size) {
-                $uploadOk = 0;
-            }
-            if (file_exists($target_file)) {
-                $message = "The file already exists";
-                $uploadOk = 0;
-            }
-            if ($file["size"] > 100000000) {
-                $message = "The file is too big";
-                $uploadOk = 0;
-            }
-            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-                $message = "Sorry, only these formats allowed JPG, JPEG, PNG & GIF.";
-                $uploadOk = 0;
-            }
-            if ($uploadOk == 0) {
-                $message .= "! File was not uploaded. ";
-            } else {
-                if (move_uploaded_file($file['tmp_name'], $target_file)) {
-                    $message .= "File " . basename($file["tmp_name"]) . " was successfully uploaded!";
-                } else {
-                    $message .= "There's an error while loading file " . basename($file["tmp_name"]);
-                }
-            }
-            return $message;
-        } catch (Exception $e) {
-            return $e;
+        if (file_exists($target_file)) {
+            $message = "The file already exists";
+            $uploadOk = 0;
         }
+        if ($files["size"] > 50000000) {
+            $message = "The file is too big";
+            $uploadOk = 0;
+        }
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            $message = "Sorry, only these formats allowed JPG, JPEG, PNG & GIF.";
+            $uploadOk = 0;
+        }
+        if ($files["tmp_name"] == "") {
+            $message .= "File did not loaded.";
+            $uploadOk = 0;
+        } else {
+            $check = @getimagesize($files["tmp_name"]);
+            if (!$check) {
+                $message .= "Can not get image info";
+                $uploadOk = 0;
+            }
+        }
+        if ($uploadOk == 0) {
+            $message .= "File was not uploaded.";
+        } else {
+            if (move_uploaded_file($files['tmp_name'], $target_file)) {
+                $message .= "File " . basename($files["tmp_name"]) . " was successfully uploaded!";
+            } else {
+                $message .= "There's an error while loading file " . basename($files["tmp_name"]);
+            }
+        }
+        return $message;
     }
     public static function is_dir_empty($dir)
     {
         if (is_dir($dir)) {
-            if (!is_readable($dir))
+            if (!is_readable($dir)) {
                 return true;
+            }
+
             return (count(scandir($dir)) == 2);
         }
         return true;

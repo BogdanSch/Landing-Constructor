@@ -10,10 +10,8 @@ class Image
     public function draw()
     {
         $str = <<<EOD
-        <!-------------Block "Image"-------------------------->
             <img src="{$this->image}" alt="image" class="content-image">
-        <!-------------The end of block "Image"-------------------------->
-EOD;
+        EOD;
         return $str;
     }
 }
