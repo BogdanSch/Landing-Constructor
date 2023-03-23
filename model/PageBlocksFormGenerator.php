@@ -19,9 +19,9 @@ class PageBlocksFormGenerator
                             <input type="text" name="header" class="form-control" placeholder="Enter page title for header">
                         </div>
                         <div class="landing__logo mb-3">
-                            <label class="form-label">Logo</label>
+                            <label class="form-label">Logo*</label>
                             <input class="form-control" name="logo" type="file" id="formFile">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="300000000" />
                             <div id="message"></div>
                         </div>
         EOD,
@@ -56,12 +56,12 @@ class PageBlocksFormGenerator
     private function get_block($block)
     {
         switch ($block) {
-            case "text":
-                $count = $this->get_count_blocks_of_type('name="text');
+            case "paragraph":
+                $count = $this->get_count_blocks_of_type('name="paragraph');
                 return '
-            <div class="landing__text mb-3">
+            <div class="landing_paragraph mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Paragraph*</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="text'.$count.'" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="paragraph'.$count.'" rows="3"></textarea>
             </div>';
             case "image":
                 $count = $this->get_count_blocks_of_type('name="image');

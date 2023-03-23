@@ -29,7 +29,7 @@ class AskFormGenerator
                 <div class="blocks__item">
                     <p>Choose your block type*</p>
                     <select class="form-select" name="blockType{$i}">
-                        <option value="text">Text</option>
+                        <option value="paragraph">Paragraph</option>
                         <option value="image">Image</option>
                         <option value="form">Form</option>
                         <option value="accordion">Accordion</option>

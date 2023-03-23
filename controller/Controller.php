@@ -40,9 +40,11 @@ class Controller
         $accordion_count = 0;
         $title = "";
         $model = new Model();
+
         ob_start();
 
         foreach ($_POST as $key => $value) {
+
             if ($key == 'header') {
                 $img = "";
                 if ((isset($_FILES["logo"]["name"])) && ($_FILES["logo"]["name"] != '') && ($_FILES["logo"]["tmp_name"] != '')) {
@@ -52,8 +54,8 @@ class Controller
                 $blocks[] = $header;
             } elseif ($key == 'title') {
                 $title = $value;
-            } elseif (str_contains($key, "text")) {
-                $text = new Text($value);
+            } elseif (str_contains($key, "paragraph")) {
+                $text = new Paragraph($value);
                 $blocks[] = $text;
             } elseif (str_contains($key, "form")) {
                 $form = new Form($value);
@@ -77,6 +79,7 @@ class Controller
         if ($title) {
             $model->setName($title);
         }
+
         $model->setBlocks($blocks);
 
         $html = new CreateHtml($model, $this->dir);
