@@ -11,7 +11,7 @@ class Footer extends Block
         $str = <<<EOD
         </div>
     </main>
-    <!-------------Блок "Footer"-------------------------->
+    <!-------------Block "Footer"-------------------------->
     <footer class='footer'>
         <div class="container">
             <div class="footer__wrap">

@@ -56,6 +56,12 @@ class PageBlocksFormGenerator
     private function get_block($block)
     {
         switch ($block) {
+            case "heading":
+                $count = $this->get_count_blocks_of_type('name="heading');
+                return '<div class="landing_heading mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Landing Heading*</label>
+                    <input class="form-control" id="exampleFormControlTextarea1" name="heading'.$count.'" rows="3"></input>
+                </div>';
             case "paragraph":
                 $count = $this->get_count_blocks_of_type('name="paragraph');
                 return '

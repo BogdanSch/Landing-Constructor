@@ -1,16 +1,19 @@
 <?php
-class Paragraph extends Block {
+class Paragraph extends Block
+{
     private $paragraph_text;
-    function __construct($text) {
+    function __construct($text)
+    {
         $this->paragraph_text = $text;
     }
-    public function draw() {
+    public function draw()
+    {
         $str = <<<EOD
-     <!-------------Блок "Text"-------------------------->
+     <!-------------Block "Paragraph"-------------------------->
     <div class='text'>        
        {$this->paragraph_text}
     </div>
-    <!-------------Кінець блоку "Text"-------------------->\n
+    <!-------------End "Paragraph"-------------------->\n
 EOD;
         return $str;
     }

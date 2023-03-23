@@ -54,7 +54,10 @@ class Controller
                 $blocks[] = $header;
             } elseif ($key == 'title') {
                 $title = $value;
-            } elseif (str_contains($key, "paragraph")) {
+            }elseif (str_contains($key, "heading")) {
+                $heading = new Heading($value);
+                $blocks[] = $heading; 
+            }elseif (str_contains($key, "paragraph")) {
                 $text = new Paragraph($value);
                 $blocks[] = $text;
             } elseif (str_contains($key, "form")) {

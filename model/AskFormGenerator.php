@@ -27,8 +27,9 @@ class AskFormGenerator
         for ($i = 0; $i < $this->blocksAmount; $i++) {
             $this->blocks[] = <<<EOD
                 <div class="blocks__item">
-                    <p>Choose your block type*</p>
+                    <label class="m-1">Choose your block type*</label>
                     <select class="form-select" name="blockType{$i}">
+                        <option value="heading">Heading</option>
                         <option value="paragraph">Paragraph</option>
                         <option value="image">Image</option>
                         <option value="form">Form</option>
