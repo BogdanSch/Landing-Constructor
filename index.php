@@ -34,7 +34,7 @@ if (empty($_REQUEST)) {
                     <div class="landing__number">
                         <h4>Enter the amount of blocks: </h4>
                         <input type="number" name="blocks-amount" value="2" placeholder="Enter the amount of blocks"
-                            class="form-control"/>
+                            class="form-control" required/>
                     </div>
                     <input type="submit" name="submitB" value="Generate landing" class="btn btn-primary" id="ok" />
                 </form>
