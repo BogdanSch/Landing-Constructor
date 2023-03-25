@@ -57,6 +57,42 @@ header{
     background-color: #f2f2f2;
 }
 /* Header - End */
+/* Hero - Start */
+.hero{
+    margin-top: 100px;
+}
+.hero__wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+.hero__content{
+    max-width: 40%;
+}
+.hero p{
+    text-align: center;
+}
+.hero .btn-hero{
+    display: block;
+    border-radius: 25px;
+    max-width: 150px;
+    margin: 5px auto;
+    padding: 10px 15px;
+}
+.hero__image{
+    max-width: 50%;
+}
+/* Hero - End */
+/* Landing - Start */
+.landing{
+    margin-top: 200px;
+}
+.landing__result{
+    margin-top: 80px;
+}
+/* Landing - End */
 /* Footer - Start */
 .footer {
     position: relative;

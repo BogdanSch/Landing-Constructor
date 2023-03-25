@@ -5,7 +5,7 @@ $block_types = [];
 echo $header->draw();
 $landing_preview = <<<EOD
 <div class="landing__result">
-<h2>Result</h2>
+<h2>The result:</h2>
 <hr>
 <a href="landing.zip" class="design" download>Download the result</a>
 <a href="landing/index.html" class="design" target="_blank">Check up the result in the new tab</a>
@@ -15,14 +15,20 @@ EOD;
 
 if (empty($_REQUEST)) {
     echo <<<EOD
-    <div class="landing">
+    <section class="hero animate__animated animate__backInLeft">
+        <div class="hero__wrap">
+            <div class="hero__content">
+                <h1>Welcome to our free Landing Generator</h1>
+                <p>Transform your ideas into reality with our construction services.</p>
+                <a href="#landing" class="btn btn-primary btn-hero">Get Started</a>
+            </div>
+            <img class="hero__image" src="images/hero-image.jpg" alt="hero-image">
+        </div>
+    </section>
+    <section class="landing" id="landing">
         <div class="container">
             <div class="landing__wrap">
-                <div class="hero">
-                    <div class="hero__wrap">
-                        <h1>Welcome to our free Landing Generator</h1>
-                    </div>
-                </div>
+                <h2>Create your free website here</h2>
                 <form class="landing__form amount form" enctype="multipart/form-data" action="{$_SERVER['PHP_SELF']}"
                     method="get">
                     <div class="landing__number">
@@ -34,27 +40,24 @@ if (empty($_REQUEST)) {
                 </form>
             </div>
         </div>
-    </div> 
+    </section> 
 EOD;
-}
-elseif(isset($_GET['blocks-amount'])) {
+} elseif (isset($_GET['blocks-amount'])) {
     $ask_generator = new AskFormGenerator($_GET['blocks-amount']);
     $ask_generator->generate_form();
     $ask_generator->print_form();
-}
-elseif(isset($_POST['add-block']) && isset($_POST['currentAmountBlocks'])){
+} elseif (isset($_POST['add-block']) && isset($_POST['currentAmountBlocks'])) {
     $ask_generator = new AskFormGenerator($_POST['currentAmountBlocks']);
     $ask_generator->add_block();
     $ask_generator->generate_form();
     $ask_generator->print_form();
-}
-elseif(isset($_POST['blocks-types'])){
+} elseif (isset($_POST['blocks-types'])) {
     $block_types = $_POST;
     $blocks_generator = new PageBlocksFormGenerator($block_types);
     $blocks_generator->generate_form();
     $blocks_generator->print_form();
 }
-if(!Model::is_dir_empty("landing/")){
+if (!Model::is_dir_empty("landing/")) {
     echo $landing_preview;
 }
 
