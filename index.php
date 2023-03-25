@@ -5,7 +5,7 @@ $block_types = [];
 echo $header->draw();
 $landing_preview = <<<EOD
 <div class="landing__result">
-<h2>The result:</h2>
+<h2>The previous result:</h2>
 <hr>
 <a href="landing.zip" class="design" download>Download the result</a>
 <a href="landing/index.html" class="design" target="_blank">Check up the result in the new tab</a>
@@ -47,8 +47,7 @@ EOD;
     $ask_generator->generate_form();
     $ask_generator->print_form();
 } elseif (isset($_POST['add-block']) && isset($_POST['currentAmountBlocks'])) {
-    $ask_generator = new AskFormGenerator($_POST['currentAmountBlocks']);
-    $ask_generator->add_block();
+    $ask_generator = new AskFormGenerator($_POST['currentAmountBlocks'] + 1);
     $ask_generator->generate_form();
     $ask_generator->print_form();
 } elseif (isset($_POST['blocks-types'])) {
