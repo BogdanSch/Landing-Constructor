@@ -3,9 +3,9 @@ class AskFormGenerator
 {
     private $block_parts = [
         "start" => '<h3>Header and footer are already included</h3><form class="generator__form" enctype="multipart/form-data" action="index.php" method="POST">',
-        "end" => '<input type="submit" name="blocks-types" class="btn btn-primary"></form>',
+        "end" => '<input type="submit" value="+" name="add-block" class="btn btn-form btn-add-block btn-primary"><input type="submit" name="blocks-types" class="btn btn-primary btn-form"></form>',
     ];
-    private $blocksAmount;
+    private $blocksAmount = 0;
     private $blocks = [];
     public function getBlocksAmount()
     {
@@ -21,10 +21,15 @@ class AskFormGenerator
     {
         $this->blocksAmount = $blocksAmount;
     }
+    public function add_block()
+    {
+        $this->blocksAmount += 1;
+    }
     public function generate_form()
     {
         $this->blocks[] = $this->block_parts["start"];
-        for ($i = 0; $i < $this->blocksAmount; $i++) {
+        $this->blocks[] = '<input type="hidden" name="currentAmountBlocks" value="'.$this->getBlocksAmount().'">';
+        for ($i = 0; $i < $this->getBlocksAmount(); $i++) {
             $this->blocks[] = <<<EOD
                 <div class="blocks__item">
                     <label class="m-1">Choose your block type*</label>

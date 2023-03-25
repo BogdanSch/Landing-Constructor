@@ -12,12 +12,17 @@ $landing_preview = <<<EOD
 <iframe width="100%" height="550px" src="./landing/index.html"></iframe>
 </div>
 EOD;
+
 if (empty($_REQUEST)) {
     echo <<<EOD
-    <div class="landing-amount">
+    <div class="landing">
         <div class="container">
             <div class="landing__wrap">
-                <h1>Welcome to our free Landing Generator</h1>
+                <div class="hero">
+                    <div class="hero__wrap">
+                        <h1>Welcome to our free Landing Generator</h1>
+                    </div>
+                </div>
                 <form class="landing__form amount form" enctype="multipart/form-data" action="{$_SERVER['PHP_SELF']}"
                     method="get">
                     <div class="landing__number">
@@ -31,25 +36,25 @@ if (empty($_REQUEST)) {
         </div>
     </div> 
 EOD;
-    if(!Model::is_dir_empty("landing/")) 
-        echo $landing_preview;
 }
-elseif (isset($_GET['blocks-amount'])) {
+elseif(isset($_GET['blocks-amount'])) {
     $ask_generator = new AskFormGenerator($_GET['blocks-amount']);
     $ask_generator->generate_form();
     $ask_generator->print_form();
-    if(!Model::is_dir_empty("landing/")) 
-        echo $landing_preview;
+}
+elseif(isset($_POST['add-block']) && isset($_POST['currentAmountBlocks'])){
+    $ask_generator = new AskFormGenerator($_POST['currentAmountBlocks']);
+    $ask_generator->add_block();
+    $ask_generator->generate_form();
+    $ask_generator->print_form();
 }
 elseif(isset($_POST['blocks-types'])){
     $block_types = $_POST;
     $blocks_generator = new PageBlocksFormGenerator($block_types);
     $blocks_generator->generate_form();
     $blocks_generator->print_form();
-    if(!Model::is_dir_empty("landing/")) 
-        echo $landing_preview;
 }
-elseif(isset($_GET['result'])){
+if(!Model::is_dir_empty("landing/")){
     echo $landing_preview;
 }
 
