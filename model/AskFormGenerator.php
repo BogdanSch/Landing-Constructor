@@ -33,7 +33,7 @@ class AskFormGenerator
             $this->blocks[] = <<<EOD
                 <div class="blocks__item">
                     <label class="m-1">Choose your block type*</label>
-                    <select class="form-select" name="blockType{$i}">
+                    <select class="form-select" name="blockType{$i}" required>
                         <option value="heading">Heading</option>
                         <option value="paragraph">Paragraph</option>
                         <option value="image">Image</option>

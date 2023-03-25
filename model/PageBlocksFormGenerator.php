@@ -12,15 +12,15 @@ class PageBlocksFormGenerator
                         <p>* Fields that you need to fill in!</p>
                         <div class="landing__title mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Page title*</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter page title">
+                            <input type="text" name="title" class="form-control" placeholder="Enter page title" required>
                         </div>
                         <div class="landing__header mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Page title for header*</label>
-                            <input type="text" name="header" class="form-control" placeholder="Enter page title for header">
+                            <input type="text" name="header" class="form-control" placeholder="Enter page title for header" required>
                         </div>
                         <div class="landing__logo mb-3">
                             <label class="form-label">Logo*</label>
-                            <input class="form-control" name="logo" type="file" id="formFile">
+                            <input class="form-control" name="logo" type="file" id="formFile" required>
                             <input type="hidden" name="MAX_FILE_SIZE" value="300000000" />
                             <div id="message"></div>
                         </div>
@@ -28,7 +28,7 @@ class PageBlocksFormGenerator
         "end" => <<<EOD
                         <div class="landing__footer mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Page footer*</label>
-                            <input type="text" name="footer" class="form-control" placeholder="Enter footer copyright">
+                            <input type="text" name="footer" class="form-control" placeholder="Enter footer copyright" required>
                         </div>
                         <button type="submit" class="btn btn-primary mb-3" name="submitB">Generate Landing</button>
                     </form>
@@ -60,28 +60,28 @@ class PageBlocksFormGenerator
                 $count = $this->get_count_blocks_of_type('name="heading');
                 return '<div class="landing_heading mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Landing Heading*</label>
-                    <input class="form-control" id="exampleFormControlTextarea1" name="heading'.$count.'" rows="3"></input>
+                    <input class="form-control" id="exampleFormControlTextarea1" name="heading'.$count.'" rows="3" required></input>
                 </div>';
             case "paragraph":
                 $count = $this->get_count_blocks_of_type('name="paragraph');
                 return '
             <div class="landing_paragraph mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Paragraph*</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="paragraph'.$count.'" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="paragraph'.$count.'" rows="3" required></textarea>
             </div>';
             case "image":
                 $count = $this->get_count_blocks_of_type('name="image');
                 return '
                 <div class="landing__image mb-3">
                     <label class="form-label">Image*</label>
-                    <input name="image'.$count.'" class="form-control" type="file" id="formFile">
+                    <input name="image'.$count.'" class="form-control" type="file" id="formFile" required>
                     <input type="hidden" name="image'.$count.'">
                 </div>';
             case "form":
                 $count = $this->get_count_blocks_of_type('name="form');
                 return '<div class="landing__form">
                 <label class="form-label">Form*</label>
-                <input type="input" name="form'.$count.'" class="form-control" placeholder="Enter button text" />
+                <input type="input" name="form'.$count.'" class="form-control" placeholder="Enter button text" required />
             </div>';
             case "accordion":
                 $count = $this->get_count_blocks_of_type('name="accordion');
@@ -89,11 +89,11 @@ class PageBlocksFormGenerator
                 <label class="form-label">Accordion*</label>
                 <div class="form-group">
                     <small class="form-text text-muted">Accordion title</small>
-                    <input type="input" name="accordion-title'.$count.'" class="form-control" placeholder="Enter accordion title"/>
+                    <input type="input" name="accordion-title'.$count.'" class="form-control" placeholder="Enter accordion title" required/>
                 </div>
                 <div class="form-group">
                     <small class="form-text text-muted">Accordion content</small>
-                    <input type="input" name="accordion-content'.$count.'" class="form-control" placeholder="Enter accordion content"/>   
+                    <input type="input" name="accordion-content'.$count.'" class="form-control" placeholder="Enter accordion content" required/>   
                 </div>
             </div>';
             default:
