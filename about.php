@@ -3,12 +3,12 @@ require_once("autoload.php");
 
 generateHeader(); ?>
 
-<section class="about">
+<section class="about animate__animated animate__backInLeft">
     <div class="container">
         <div class="about__wrap">
             <h2>Our Story</h2>
-            <p>Welcome to our company! We are dedicated to providing high-quality solutions for all your needs.</p>
-            <p>Founded in 20XX, our team of experts has been working tirelessly to deliver innovative products and
+            <p>Welcome to our company! We are dedicated to providing high-quality solutions for all your needs.
+                Founded in 20XX, our team of experts has been working tirelessly to deliver innovative products and
                 services.</p>
         </div>
     </div>
@@ -52,9 +52,9 @@ generateHeader(); ?>
                 <li>Integrity</li>
                 <li>Customer-Centric Approach</li>
             </ul>
+            <h2>Our Values</h2>
         </div>
     </div>
-    <h2>Our Values</h2>
 </section>
 
 <?php generateFooter(); ?>
