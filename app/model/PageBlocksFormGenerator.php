@@ -8,7 +8,7 @@ class PageBlocksFormGenerator
             <div class="container">
                 <div class="landing__wrap">
                     <h1>Landing Constructor form</h1>
-                    <form class="landing__form form" enctype="multipart/form-data" action="controller/controller.php" method="post">
+                    <form class="landing__form form" enctype="multipart/form-data" action="app/controller/controller.php" method="post">
                         <p>* Fields that you need to fill in!</p>
                         <div class="landing__title mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Page title*</label>

@@ -14,7 +14,7 @@ class Controller
         if (!is_dir($this->uploaddir)) {
             mkdir($this->uploaddir);
         }
-        $this->custom_copy("../assets/style", $dir . "/assets/style/");
+        $this->custom_copy("../assets/styles", $dir . "/assets/styles/");
     }
     private function custom_copy($path, $destination)
     {
@@ -51,8 +51,8 @@ class Controller
                     $img = "images/" . $_FILES["logo"]["name"];
                 }
                 $header = new Header($value, $img, [
-                    ["Home"] => "index.html"
-                ]);
+                    "Home" => "index.html"
+                ], false);
                 $blocks[] = $header;
             } elseif ($key == 'title') {
                 $title = $value;

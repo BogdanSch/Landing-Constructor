@@ -1,10 +1,11 @@
 <?php
 function generateHeader($headerTitle = "Landing Constructor", $headerLogo = "", array $headerLinks = [
     "Home" => "index.php",
-    "About" => "about.php"
-])
+    "About" => "about.php",
+    "Contact Us" => "contact.php"
+], $showTellMoreButton = true)
 {
-    $header = new Header($headerTitle, $headerLogo, $headerLinks);
+    $header = new Header($headerTitle, $headerLogo, $headerLinks, $showTellMoreButton);
     echo $header->draw();
 }
 function generateLandingPreview()

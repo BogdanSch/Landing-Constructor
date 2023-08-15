@@ -5,12 +5,14 @@ class Header extends Block
     private $landingHeaderTitle;
     private $logoImg;
     private array $headerLinks;
+    private $showTellMoreButton;
 
-    function __construct($landingHeaderTitle = "Header", $logoImg = "", array $headerLinks = ["Home" => "index.html"])
+    function __construct($landingHeaderTitle = "Header", $logoImg = "", array $headerLinks = ["Home" => "index.html"], $showTellMoreButton = true)
     {
         $this->landingHeaderTitle = $landingHeaderTitle;
         $this->logoImg = $logoImg;
         $this->headerLinks = $headerLinks;
+        $this->showTellMoreButton = $showTellMoreButton;
     }
 
     public function draw()
@@ -26,39 +28,47 @@ class Header extends Block
 <head>
     <meta charset="UTF-8">
     <title>' . $this->landingHeaderTitle . '</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="./assets/style/style.css">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./assets/styles/theme.css">
+    <link rel="stylesheet" href="./assets/styles/style.css">
 </head> 
-<body>
-    <header class="header">
+<body id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <div class="header__wrap">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <div class="container-fluid">';
+            <a class="navbar-brand" href="' . $this->headerLinks["Home"] . '">'.''. $img . $this->landingHeaderTitle . '</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    ';
         $i = 0;
         foreach ($this->headerLinks as $linkName => $link) {
-            if ($i === 0) {
-                $str .= '<a class="navbar-brand" href="' . $link . '">' . $this->landingHeaderTitle . '</a>';
-                $str .= '<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="' . $link . '">' . $linkName . '</a>
-                        </li>';
-                $i++;
-                continue;
-            }
             $str .= '<li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="' . $link . '">' . $linkName . '</a>
+                        <a class="nav-link" href="' . $link . '">' . $linkName . '</a>
                     </li>';
         }
-        $str .= '</ul>
-                    ' . $img . '
-                </div>
-            </nav>
-        </div>       
-    </div>
-</header>
+        $str .= '
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Welcome To</div>
+                <div class="masthead-heading text-uppercase">' . $this->landingHeaderTitle . '</div>';
+                if($this->showTellMoreButton){
+                    $str.= '<a class="btn btn-primary btn-xl text-uppercase" href="' . $this->headerLinks["About"] . '">Tell Me More</a>';
+                }
+                else{
+                    $str.= '<a class="btn btn-primary btn-xl text-uppercase" href="' . $this->headerLinks["Home"] . '">Get Back</a>';
+                }
+            $str .= '</div>
+    </header>
+
 <main class="main">';
         return $str;
     }
