@@ -46,10 +46,7 @@ class Controller
         foreach ($_POST as $key => $value) {
 
             if ($key == 'header') {
-                $img = "";
-                if ((isset($_FILES["logo"]["name"])) && ($_FILES["logo"]["name"] != '') && ($_FILES["logo"]["tmp_name"] != '')) {
-                    $img = "images/" . $_FILES["logo"]["name"];
-                }
+                $img = $this->uploadLogo();
                 $header = new Header($value, $img, [
                     "Home" => "index.html"
                 ], false);
@@ -86,11 +83,9 @@ class Controller
 
         $html = new CreateHtml($model, $this->dir);
         $html->create();
-        if ((isset($_FILES["logo"]["name"])) && ($_FILES["logo"]["name"] != '') && ($_FILES["logo"]["tmp_name"] != '')) {
-            error_log($model->upload($_FILES["logo"], $this->uploaddir));
-        }
+
         $model->archive($this->dir);
-        header("Location: ../index.php?result=true");
+        header("Location: ../../index.php?result=true");
         ob_flush();
     }
     private function uploadImage($key)
@@ -102,6 +97,16 @@ class Controller
             return $img;
         }
         return null;
+    }
+    private function uploadLogo()
+    {
+        $img = "";
+        if (isset($_FILES["logo"]["name"]) && $_FILES["logo"]["name"] != '' && $_FILES["logo"]["tmp_name"] != '') {
+            $img = "images/" . $_FILES["logo"]["name"];
+            $model = new Model();
+            $model->upload($_FILES["logo"], $this->uploaddir);
+        }
+        return $img;
     }
 }
 $controller = new Controller('../landing');
