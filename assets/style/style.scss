@@ -1,0 +1,133 @@
+/* General - Start */
+body {
+    min-height: 1vh;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: rgb(224, 224, 224);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(143, 143, 143);
+    border-radius: 50px;
+}
+
+.form {
+    margin-top: 10px;
+}
+
+input {
+    display: block;
+    padding: 5px 15px;
+    width: 200px;
+    margin: 5px;
+}
+
+.design {
+    width: 300px;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+.logo {
+    width: 3%;
+}
+
+.content-image {
+    width: 55%;
+}
+
+.text {
+    text-align: center;
+}
+
+.btn {
+    &-form {
+        display: block;
+        padding: 10px 15px;
+        margin: 10px auto;
+    }
+
+    &-add-block {
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        margin: 10px auto;
+    }
+    &-hero {
+        display: block;
+        border-radius: 25px;
+        max-width: 150px;
+        margin: 5px auto;
+        padding: 10px 15px;
+    }
+}
+
+/* General - End */
+/* Header - Start */
+header {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+}
+
+/* Header - End */
+/* Hero - Start */
+.hero {
+    margin-top: 100px;
+
+    &__wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__content {
+        max-width: 40%;
+    }
+
+    &__image {
+        max-width: 50%;
+    }
+
+    p {
+        text-align: center;
+    }
+}
+/* Hero - End */
+/* Landing - Start */
+.landing {
+    margin-top: 200px;
+    margin-bottom: 200px;
+
+    &__title {
+        margin-bottom: 30px;
+    }
+    &__result {
+        margin-top: 80px;
+    }
+}
+/* Landing - End */
+/* About - Start */
+.about {
+
+}
+/* About - End */
+/* Footer - Start */
+.footer {
+    background-color: #f2f2f2;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+}
+/* Footer - End */

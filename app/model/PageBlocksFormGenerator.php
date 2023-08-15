@@ -2,7 +2,7 @@
 
 class PageBlocksFormGenerator
 {
-    private $block_parts = [
+    private $blockParts = [
         "start" => <<<EOD
         <section class="landing">
             <div class="container">
@@ -37,40 +37,40 @@ class PageBlocksFormGenerator
         </section>
     EOD,
     ];
-    private $block_types = [];
+    private $blockTypes = [];
     private $blocks = [];
-    public function __construct(array $block_types)
+    public function __construct(array $blockTypes)
     {
-        $this->block_types = $block_types;
+        $this->blockTypes = $blockTypes;
     }
-    public function generate_form()
+    public function generateForm()
     {
-        $this->blocks[] = $this->block_parts["start"];
-        foreach ($this->block_types as $key => $value) {
-            $block = $this->get_block($value);
+        $this->blocks[] = $this->blockParts["start"];
+        foreach ($this->blockTypes as $key => $value) {
+            $block = $this->getBlock($value);
             if (isset($block)) {
                 $this->blocks[] = $block;
             }
         }
     }
-    private function get_block($block)
+    private function getBlock($block)
     {
         switch ($block) {
             case "heading":
-                $count = $this->get_count_blocks_of_type('name="heading');
+                $count = $this->getCountBlocksOfType('name="heading');
                 return '<div class="landing_heading mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Landing Heading*</label>
                     <input class="form-control" id="exampleFormControlTextarea1" name="heading'.$count.'" rows="3" required></input>
                 </div>';
             case "paragraph":
-                $count = $this->get_count_blocks_of_type('name="paragraph');
+                $count = $this->getCountBlocksOfType('name="paragraph');
                 return '
             <div class="landing_paragraph mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Paragraph*</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="paragraph'.$count.'" rows="3" required></textarea>
             </div>';
             case "image":
-                $count = $this->get_count_blocks_of_type('name="image');
+                $count = $this->getCountBlocksOfType('name="image');
                 return '
                 <div class="landing__image mb-3">
                     <label class="form-label">Image*</label>
@@ -78,13 +78,13 @@ class PageBlocksFormGenerator
                     <input type="hidden" name="image'.$count.'">
                 </div>';
             case "form":
-                $count = $this->get_count_blocks_of_type('name="form');
+                $count = $this->getCountBlocksOfType('name="form');
                 return '<div class="landing__form">
                 <label class="form-label">Form*</label>
                 <input type="input" name="form'.$count.'" class="form-control" placeholder="Enter button text" required />
             </div>';
             case "accordion":
-                $count = $this->get_count_blocks_of_type('name="accordion');
+                $count = $this->getCountBlocksOfType('name="accordion');
                 return '<div class="landing__accordion">
                 <label class="form-label">Accordion*</label>
                 <div class="form-group">
@@ -100,18 +100,18 @@ class PageBlocksFormGenerator
                 return false;
         }
     }
-    private function get_count_blocks_of_type($block_type){
+    private function getCountBlocksOfType($blockType){
         $count = 0;
         foreach ($this->blocks as $key => $value) {
-            if(str_contains($value, $block_type)){
+            if(str_contains($value, $blockType)){
                 $count++;
             }
         }
         return $count;
     }
-    public function print_form()
+    public function printForm()
     {
-        $this->blocks[] = $this->block_parts["end"];
+        $this->blocks[] = $this->blockParts["end"];
         if (count($this->blocks) > 0) {
             foreach ($this->blocks as $str) {
                 echo $str;

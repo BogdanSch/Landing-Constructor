@@ -37,10 +37,10 @@ h1, h2, h3{
 .text{
     text-align: center;
 }
-/* Buttons - Start */
 .btn-form{
     display: block;
     padding: 10px 15px;
+    margin: 10px auto;
 }
 .btn-add-block{
     width: 50px;
@@ -48,7 +48,6 @@ h1, h2, h3{
     padding: 10px;
     margin: 10px auto;
 }
-/* Buttons - End/
 /* General - End */
 /* Header - Start */
 header{
@@ -66,7 +65,6 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* flex-wrap: wrap; */
 }
 .hero__content{
     max-width: 40%;
@@ -88,16 +86,22 @@ header{
 /* Landing - Start */
 .landing{
     margin-top: 200px;
+    margin-bottom: 200px;
+}
+.landing__title{
+    margin-bottom: 30px;
 }
 .landing__result{
     margin-top: 80px;
 }
 /* Landing - End */
+/* About - Start */
+.about{
+    
+}
+/* About - End */
 /* Footer - Start */
 .footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
     background-color: #f2f2f2;
     padding: 15px;
     margin-top: 10px;

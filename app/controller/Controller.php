@@ -1,5 +1,5 @@
 <?php
-require_once "../autoload.php";
+require_once "../../autoload.php";
 class Controller
 {
     private $dir;
@@ -7,14 +7,14 @@ class Controller
     public function __construct($dir)
     {
         $this->dir = $dir;
-        $this->uploaddir = $dir . "/images/";
+        $this->uploaddir = $dir . "/assets/images/";
         if (!is_dir($this->dir)) {
             mkdir($this->dir);
         }
         if (!is_dir($this->uploaddir)) {
             mkdir($this->uploaddir);
         }
-        $this->custom_copy("../style", $dir . "/style/");
+        $this->custom_copy("../assets/style", $dir . "/assets/style/");
     }
     private function custom_copy($path, $destination)
     {
@@ -50,7 +50,9 @@ class Controller
                 if ((isset($_FILES["logo"]["name"])) && ($_FILES["logo"]["name"] != '') && ($_FILES["logo"]["tmp_name"] != '')) {
                     $img = "images/" . $_FILES["logo"]["name"];
                 }
-                $header = new Header($value, $img);
+                $header = new Header($value, $img, [
+                    ["Home"] => "index.html"
+                ]);
                 $blocks[] = $header;
             } elseif ($key == 'title') {
                 $title = $value;
@@ -68,11 +70,9 @@ class Controller
                 $blocks[] = $accordion;
                 $accordion_count++;
             } elseif (str_contains($key, "image")) {
-                if ((isset($_FILES[$key]["name"])) && ($_FILES[$key]["name"] != '') && ($_FILES[$key]["tmp_name"] != '')) {
-                    $img = "images/" . $_FILES[$key]["name"];
-                    $image = new Image($img);
-                    $blocks[] = $image;
-                    error_log($model->upload($_FILES[$key], $this->uploaddir));
+                $img = $this->uploadImage($key);
+                if ($img) {
+                    $blocks[] = new Image($img);
                 }
             } elseif ($key == "footer") {
                 $footer = new Footer($value);
@@ -82,7 +82,6 @@ class Controller
         if ($title) {
             $model->setName($title);
         }
-
         $model->setBlocks($blocks);
 
         $html = new CreateHtml($model, $this->dir);
@@ -93,6 +92,16 @@ class Controller
         $model->archive($this->dir);
         header("Location: ../index.php?result=true");
         ob_flush();
+    }
+    private function uploadImage($key)
+    {
+        if (isset($_FILES[$key]["name"]) && $_FILES[$key]["name"] != '' && $_FILES[$key]["tmp_name"] != '') {
+            $img = "images/" . $_FILES[$key]["name"];
+            $model = new Model();
+            $model->upload($_FILES[$key], $this->uploaddir);
+            return $img;
+        }
+        return null;
     }
 }
 $controller = new Controller('../landing');
