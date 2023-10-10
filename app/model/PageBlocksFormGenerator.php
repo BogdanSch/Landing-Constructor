@@ -60,28 +60,28 @@ class PageBlocksFormGenerator
                 $count = $this->getCountBlocksOfType('name="heading');
                 return '<div class="landing_heading mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Landing Heading*</label>
-                    <input class="form-control" id="exampleFormControlTextarea1" name="heading'.$count.'" rows="3" required></input>
+                    <input class="form-control" id="exampleFormControlTextarea1" name="heading' . $count . '" rows="3" required></input>
                 </div>';
             case "paragraph":
                 $count = $this->getCountBlocksOfType('name="paragraph');
                 return '
             <div class="landing_paragraph mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Paragraph*</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="paragraph'.$count.'" rows="3" required></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="paragraph' . $count . '" rows="3" required></textarea>
             </div>';
             case "image":
                 $count = $this->getCountBlocksOfType('name="image');
                 return '
                 <div class="landing__image mb-3">
                     <label class="form-label">Image*</label>
-                    <input name="image'.$count.'" class="form-control" type="file" id="formFile" required>
-                    <input type="hidden" name="image'.$count.'">
+                    <input name="image' . $count . '" class="form-control" type="file" id="formFile" required>
+                    <input type="hidden" name="image' . $count . '">
                 </div>';
             case "form":
                 $count = $this->getCountBlocksOfType('name="form');
                 return '<div class="landing__form">
                 <label class="form-label">Form*</label>
-                <input type="input" name="form'.$count.'" class="form-control" placeholder="Enter button text" required />
+                <input type="input" name="form' . $count . '" class="form-control" placeholder="Enter button text" required />
             </div>';
             case "accordion":
                 $count = $this->getCountBlocksOfType('name="accordion');
@@ -89,21 +89,22 @@ class PageBlocksFormGenerator
                 <label class="form-label">Accordion*</label>
                 <div class="form-group">
                     <small class="form-text text-muted">Accordion title</small>
-                    <input type="input" name="accordion-title'.$count.'" class="form-control" placeholder="Enter accordion title" required/>
+                    <input type="input" name="accordion-title' . $count . '" class="form-control" placeholder="Enter accordion title" required/>
                 </div>
                 <div class="form-group">
                     <small class="form-text text-muted">Accordion content</small>
-                    <input type="input" name="accordion-content'.$count.'" class="form-control" placeholder="Enter accordion content" required/>   
+                    <input type="input" name="accordion-content' . $count . '" class="form-control" placeholder="Enter accordion content" required/>   
                 </div>
             </div>';
             default:
                 return false;
         }
     }
-    private function getCountBlocksOfType($blockType){
+    private function getCountBlocksOfType($blockType)
+    {
         $count = 0;
         foreach ($this->blocks as $key => $value) {
-            if(str_contains($value, $blockType)){
+            if (str_contains($value, $blockType)) {
                 $count++;
             }
         }
