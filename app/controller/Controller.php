@@ -47,7 +47,7 @@ class Controller
 
             if ($key == 'header') {
                 $img = $this->uploadLogo();
-                $header = new Header($value, $img, [
+                $header = new Header($value, $img, "", [
                     "Home" => "index.html"
                 ], false);
                 $blocks[] = $header;

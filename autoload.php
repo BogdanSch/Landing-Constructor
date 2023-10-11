@@ -10,5 +10,3 @@ function autoload_controllers($className) {
 
 spl_autoload_register ("autoload_models");
 spl_autoload_register ("autoload_controllers");
-
-require_once "action.php";

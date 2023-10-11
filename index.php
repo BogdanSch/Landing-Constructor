@@ -1,18 +1,17 @@
 <?php
 require_once("autoload.php");
-
-generateHeader();
+IndexPage::generateHeader();
 
 if (isset($_GET['blocks-amount'])) {
-    generateAskForm($_GET['blocks-amount']);
+    IndexPage::generateAskForm($_GET['blocks-amount']);
 } elseif (isset($_POST['blocks-types'])) {
     $blockTypes = $_POST;
-    generatePageBlocksForm($blockTypes);
+    IndexPage::generatePageBlocksForm($blockTypes);
 } else {
-    generateHeroAndLandingSection();
+    IndexPage::generateMainPage();
 }
 if (!Model::is_dir_empty("landing/")) {
-    generateLandingPreview();
+    IndexPage::generateLandingPreview();
 }
 
-generateFooter();
+IndexPage::generateFooter();

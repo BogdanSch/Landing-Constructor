@@ -1,6 +1,6 @@
 <?php
 require_once("autoload.php");
-generateHeader(showTellMoreButton: false); ?>
+IndexPage::generateHeader(showTellMoreButton: false); ?>
 
 <section class="page-section" id="contact">
     <div class="container">
@@ -51,4 +51,4 @@ generateHeader(showTellMoreButton: false); ?>
     </div>
 </section>
 
-<?php generateFooter(); ?>
+<?php IndexPage::generateFooter(); ?>

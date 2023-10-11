@@ -4,15 +4,15 @@ class Header extends Block
 {
     private $landingHeaderTitle;
     private $logoImg;
-    private $headerBackground;
+    private $headerBackgroundImage;
     private array $headerLinks;
     private $showTellMoreButton;
 
-    function __construct($landingHeaderTitle = "Header", $logoImg = "", $headerBackground = "", array $headerLinks = ["Home" => "index.html"], $showTellMoreButton = true)
+    function __construct($landingHeaderTitle = "Header", $logoImg = "", $headerBackgroundImage = "", array $headerLinks = ["Home" => "index.html"], $showTellMoreButton = true)
     {
         $this->landingHeaderTitle = $landingHeaderTitle;
         $this->logoImg = $logoImg;
-        $this->headerBackground = $headerBackground;
+        $this->headerBackgroundImage = $headerBackgroundImage;
         $this->headerLinks = $headerLinks;
         $this->showTellMoreButton = $showTellMoreButton;
     }
@@ -59,7 +59,7 @@ class Header extends Block
         $str .= '</div>
         </div>
     </nav>
-    <header class="masthead" style="background">
+    <header class="masthead" style="background-image: url('. $this->headerBackgroundImage .');">
             <div class="container">
                 <div class="masthead-subheading">Welcome To</div>
                 <div class="masthead-heading text-uppercase">' . $this->landingHeaderTitle . '</div>';
