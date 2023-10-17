@@ -97,7 +97,7 @@ class PageBlocksFormGenerator
                 </div>
             </div>';
             default:
-                return false;
+                return null;
         }
     }
     private function getCountBlocksOfType($blockType)

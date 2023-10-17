@@ -3,16 +3,16 @@ require_once "../../autoload.php";
 class Controller
 {
     private $dir;
-    private $uploaddir;
+    private $uploadDir;
     public function __construct($dir)
     {
         $this->dir = $dir;
-        $this->uploaddir = $dir . "/assets/images/";
+        $this->uploadDir = $dir . "/assets/images/";
         if (!is_dir($this->dir)) {
             mkdir($this->dir);
         }
-        if (!is_dir($this->uploaddir)) {
-            mkdir($this->uploaddir);
+        if (!is_dir($this->uploadDir)) {
+            mkdir($this->uploadDir);
         }
         $this->custom_copy("../assets/styles", $dir . "/assets/styles/");
     }
@@ -93,7 +93,7 @@ class Controller
         if (isset($_FILES[$key]["name"]) && $_FILES[$key]["name"] != '' && $_FILES[$key]["tmp_name"] != '') {
             $img = "images/" . $_FILES[$key]["name"];
             $model = new Model();
-            $model->upload($_FILES[$key], $this->uploaddir);
+            $model->upload($_FILES[$key], $this->uploadDir);
             return $img;
         }
         return null;
@@ -104,7 +104,7 @@ class Controller
         if (isset($_FILES["logo"]["name"]) && $_FILES["logo"]["name"] != '' && $_FILES["logo"]["tmp_name"] != '') {
             $img = "images/" . $_FILES["logo"]["name"];
             $model = new Model();
-            $model->upload($_FILES["logo"], $this->uploaddir);
+            $model->upload($_FILES["logo"], $this->uploadDir);
         }
         return $img;
     }

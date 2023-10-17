@@ -65,7 +65,7 @@ class IndexPage
     }
     public static function generateAskForm($amount)
     {
-        $askFormGenerator = new AskFormGenerator($amount);
+        $askFormGenerator = new AskBlocksTypesFormGenerator($amount);
         $askFormGenerator->generateForm();
         $askFormGenerator->printForm();
     }
